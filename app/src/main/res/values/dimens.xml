@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="initFragment_main_fab_margin">18dp</dimen>
+    <dimen name="initFragment_main_fab_elevation">8dp</dimen>
+    <dimen name="initFragment_main_fab_transz">8dp</dimen>
+    <dimen name="lst_padding">8dp</dimen>
+</resources>
