@@ -11,12 +11,11 @@ import com.example.pr09_rickpedrosa.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        navController = Navigation.findNavController(this, R.id.navHostFragment);
+       // navController = Navigation.findNavController(this, R.id.navHostFragment);
     }
 }
