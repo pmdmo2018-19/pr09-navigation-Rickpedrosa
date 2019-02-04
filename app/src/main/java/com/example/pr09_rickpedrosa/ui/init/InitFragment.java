@@ -3,7 +3,6 @@ package com.example.pr09_rickpedrosa.ui.init;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -31,7 +29,6 @@ public class InitFragment extends Fragment implements SharedPreferences.OnShared
     private SharedPreferences sharedPreferences;
     private TextView lblLorem;
     private NavController navController;
-    private NestedScrollView nestedScrollView;
 
     public InitFragment() {
     }
@@ -58,11 +55,9 @@ public class InitFragment extends Fragment implements SharedPreferences.OnShared
     }
 
     private void setupViews(View view) {
-        //nestedScrollView = ViewCompat.requireViewById(view, R.id.scvLorem);
         lblLorem = ViewCompat.requireViewById(view, R.id.lblLorem);
         setupToolbar(view);
         setupFab(view);
-
     }
 
     private void showLoremText() {
@@ -80,6 +75,14 @@ public class InitFragment extends Fragment implements SharedPreferences.OnShared
         Toolbar toolbar = ViewCompat.requireViewById(view, R.id.toolbar_initFragment);
         toolbar.setTitle(R.string.initFragment_lblTitle);
         toolbar.inflateMenu(R.menu.init_fragment);
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_initFragment_to_settingsFragment) {
+                navController.navigate(R.id.action_initFragment_to_settingsFragment);
+                return true;
+            } else {
+                return false;
+            }
+        });
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 navController.getGraph()).build();
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
