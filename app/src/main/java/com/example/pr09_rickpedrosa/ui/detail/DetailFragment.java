@@ -16,9 +16,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 @SuppressWarnings("WeakerAccess")
 public class DetailFragment extends Fragment {
+
+    private NavController navController;
 
     public DetailFragment() {
     }
@@ -38,6 +44,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        navController = NavHostFragment.findNavController(this);
         setupViews(requireView());
 
     }
@@ -51,9 +58,9 @@ public class DetailFragment extends Fragment {
 
     private void setupToolbar(View view) {
         Toolbar toolbar = ViewCompat.requireViewById(view, R.id.toolbar_detailFragment);
-        toolbar.setTitle(R.string.detailFragment_lblTitle);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_whitev2_24dp);
-        toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                navController.getGraph()).build();
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
     }
 
     private void setupFab(View view) {
